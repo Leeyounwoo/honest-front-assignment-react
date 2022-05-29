@@ -86,24 +86,22 @@ function IdentityAuthentication() {
     // event.preventDefault();
     event.preventDefault();
     try {
-      const result = await request({
+      const params = {
         name,
         civilcodeFirst: regNoFront,
         civilcodeLast: regNoBack,
         mobile: '010' + phoneMid + phoneEnd,
-      });
-
-      console.log({
-        name,
-        civilcodeFirst: regNoFront,
-        civilcodeLast: regNoBack,
-        mobile: '010' + phoneMid + phoneEnd,
-      });
+      };
+      const result = await request(params);
       if (result.status === 200) {
         alert('본인확인을 위한 인증번호가 발신되었습니다.');
         const token = result.body.response.token;
-        console.log('token1', token);
-        navigate('/phone-certification', { state: { token: token } });
+        navigate('/phone-certification', {
+          state: {
+            token: token,
+            params: params,
+          },
+        });
       }
     } catch (error) {
       alert(

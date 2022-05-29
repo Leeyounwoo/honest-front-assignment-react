@@ -1,4 +1,5 @@
 const post = (url, params) => {
+  console.log('url', url);
   return fetch(url, {
     method: 'POST',
     headers: {
