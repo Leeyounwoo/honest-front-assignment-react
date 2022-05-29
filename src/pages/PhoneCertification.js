@@ -33,31 +33,33 @@ function PhoneCertification() {
   const onClickRestart = async () => {
     try {
       const result = await request(params.current);
-      console.log('params', params.current);
-      console.log('result', result);
 
       if (result.status === 200) {
         alert('본인확인을 위한 인증번호가 재발신되었습니다.');
         token.current = result.body.response.token;
         time.current = 180;
         setRestartCnt(restartCnt + 1);
+      } else {
+        alert('인증번호 재발신을 실패하였습니다.');
+        navigate('/identity-authentication');
       }
     } catch (error) {
-      alert('인증번호 재발신이 어려워 회원정보 입력 페이지로 돌아갑니다.');
+      alert('예상치 못한 에러가 발생하여 회원정보 입력 페이지로 돌아갑니다.');
       navigate('/identity-authentication');
     }
   };
 
   const onClickDone = async () => {
     const submitParams = { code, token: token.current };
-    console.log('submitParams', submitParams);
     try {
       const result = await submit(submitParams);
       if (result.status === 200) {
         alert('본인인증이 완료되었습니다.');
+      } else {
+        alert(result.body.error);
       }
     } catch (error) {
-      alert('올바르지 않은 6자리입니다. \n 잠시 후에 다시 시도해주세요.');
+      alert('예상치 못한 에러입니다');
     }
   };
 
