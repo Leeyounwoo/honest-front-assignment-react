@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router';
-import IdentityAuthentication from './IdentityAuthentication';
-import PhoneCertification from './PhoneCertification';
+import IdentityAuthentication from './pages/IdentityAuthentication';
+import PhoneCertification from './pages/PhoneCertification';
 import './styles.css';
 
 function App() {
