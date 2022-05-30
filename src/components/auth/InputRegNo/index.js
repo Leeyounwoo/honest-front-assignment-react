@@ -9,17 +9,21 @@ export default function InputRegNo({
   onChangeRegNoBack,
 }) {
   return (
-    <div>
-      <label>주민등록번호</label>
-      <div style={{ display: 'flex' }}>
+    <div className="input-box">
+      <div className="input-label-box">
+        <label>주민등록번호</label>
+      </div>
+      <div className="input-input-box">
         <input
+          className="input"
           placeholder="앞 6자리"
           ref={regNoFrontRef}
           value={regNoFront}
           onChange={onChangeRegNoFront}
         />
-        <p>-</p>
+        <p className="input-line">-</p>
         <input
+          className="input"
           placeholder="뒤 7자리"
           type="password"
           ref={regNoBackRef}

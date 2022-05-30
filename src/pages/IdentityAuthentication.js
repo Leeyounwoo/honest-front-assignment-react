@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import InputName from '../components/auth/InputName';
 import InputPhone from '../components/auth/InputPhone';
 import InputRegNo from '../components/auth/InputRegNo';
+import SubmitButton from '../components/auth/SubmitButton';
 import { useNavigate } from 'react-router-dom';
 import { request } from '../api';
 
@@ -125,31 +126,39 @@ function IdentityAuthentication() {
   }, [phoneMid, phoneEnd, regNoFront, regNoBack, name]);
 
   return (
-    <div>
-      <span>비대면 대출을 위해 본인인증이 필요해요</span>
-      <form>
-        <InputPhone
-          phoneStart={phoneStart}
-          phoneMidRef={phoneMidRef}
-          phoneMid={phoneMid}
-          onChangePhoneMid={onChangePhoneMid}
-          phoneEndRef={phoneEndRef}
-          phoneEnd={phoneEnd}
-          onChangePhoneEnd={onChangePhoneEnd}
-        />
+    <div className="container">
+      <div>
+        <div className="guide">
+          <p>비대면 대출을 위해 본인인증이 필요해요</p>
+        </div>
+        <form>
+          <InputPhone
+            phoneStart={phoneStart}
+            phoneMidRef={phoneMidRef}
+            phoneMid={phoneMid}
+            onChangePhoneMid={onChangePhoneMid}
+            phoneEndRef={phoneEndRef}
+            phoneEnd={phoneEnd}
+            onChangePhoneEnd={onChangePhoneEnd}
+          />
 
-        <InputRegNo
-          regNoFrontRef={regNoFrontRef}
-          regNoFront={regNoFront}
-          onChangeRegNoFront={onChangeRegNoFront}
-          regNoBackRef={regNoBackRef}
-          regNoBack={regNoBack}
-          onChangeRegNoBack={onChangeRegNoBack}
-        />
+          <InputRegNo
+            regNoFrontRef={regNoFrontRef}
+            regNoFront={regNoFront}
+            onChangeRegNoFront={onChangeRegNoFront}
+            regNoBackRef={regNoBackRef}
+            regNoBack={regNoBack}
+            onChangeRegNoBack={onChangeRegNoBack}
+          />
 
-        <InputName nameRef={nameRef} name={name} onChangeName={onChangeName} />
-        {submitFlag && <button onClick={onSubmit}>Submit</button>}
-      </form>
+          <InputName
+            nameRef={nameRef}
+            name={name}
+            onChangeName={onChangeName}
+          />
+          <SubmitButton flag={submitFlag} onClick={onSubmit} label={'다음'} />
+        </form>
+      </div>
     </div>
   );
 }

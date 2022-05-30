@@ -10,14 +10,27 @@ export default function InputPhone({
   onChangePhoneEnd,
 }) {
   return (
-    <div>
-      <label>휴대폰 번호</label>
-      <div style={{ display: 'flex' }}>
-        <input value={phoneStart} readOnly />
-        <p style={{ fontSize: 16, fontWeight: 'bold' }}>-</p>
-        <input ref={phoneMidRef} value={phoneMid} onChange={onChangePhoneMid} />
-        <p>-</p>
-        <input ref={phoneEndRef} value={phoneEnd} onChange={onChangePhoneEnd} />
+    <div className="input-box">
+      <div className="input-label-box">
+        <label>휴대폰 번호</label>
+      </div>
+      <div className="input-input-box">
+        <input className="input" value={phoneStart} readOnly />
+        <p className="input-line">-</p>
+
+        <input
+          className="input"
+          ref={phoneMidRef}
+          value={phoneMid}
+          onChange={onChangePhoneMid}
+        />
+        <p className="input-line">-</p>
+        <input
+          className="input"
+          ref={phoneEndRef}
+          value={phoneEnd}
+          onChange={onChangePhoneEnd}
+        />
       </div>
     </div>
   );

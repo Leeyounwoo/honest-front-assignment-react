@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { request, submit } from '../api';
+import SubmitButton from '../components/auth/SubmitButton';
 
 function PhoneCertification() {
   const location = useLocation();
@@ -9,6 +10,7 @@ function PhoneCertification() {
   const token = useRef('');
   const params = useRef({});
   const [restartCnt, setRestartCnt] = useState(0);
+  const [flag, setFlag] = useState(false);
 
   useEffect(() => {
     if (location.state === null) {
@@ -78,27 +80,49 @@ function PhoneCertification() {
     }
   }, [sec]);
 
-  return (
-    <div>
-      <div>
-        <p>
-          휴대폰 번호로 전송된 <br /> 인증번호를 입력해 주세요
-        </p>
-      </div>
+  useEffect(() => {
+    if (code.length === 6) {
+      setFlag(true);
+    }
+  }, [code]);
 
+  return (
+    <div className="container">
       <div>
         <div>
-          <p>인증번호</p>
-          <div>
-            {min} 분 {sec} 초
+          <div className="guide">
+            <p>
+              휴대폰 번호로 전송된 <br /> 인증번호를 입력해 주세요
+            </p>
           </div>
         </div>
-        <input value={code} onChange={onChangeCode} />
-        <button onClick={onClickRestart}>재전송</button>
-      </div>
 
-      <div>
-        <button onClick={onClickDone}>본인인증하기</button>
+        <div className="certification-input-box">
+          <div className="timer-box">
+            <p>인증번호</p>
+            <p className="timer">
+              {min} 분 {sec} 초
+            </p>
+          </div>
+          <div className="input-input-box">
+            <input
+              className="input-only"
+              value={code}
+              onChange={onChangeCode}
+            />
+            <button className="restart-btn" onClick={onClickRestart}>
+              재전송
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <SubmitButton
+            onClick={onClickDone}
+            flag={flag}
+            label={'본인인증하기'}
+          />
+        </div>
       </div>
     </div>
   );
