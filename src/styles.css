@@ -10,8 +10,11 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
+  width: 800px;
 }
-
+.mid-container {
+  width: 100%;
+}
 .guide {
   font-weight: 700;
   font-size: 26px;

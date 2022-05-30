@@ -3,6 +3,8 @@ import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import { request, submit } from '../api';
 import SubmitButton from '../components/auth/SubmitButton';
+import Timer from '../components/auth/Timer';
+import InputCertification from '../components/auth/InputCertification';
 
 function PhoneCertification() {
   const location = useLocation();
@@ -98,22 +100,12 @@ function PhoneCertification() {
         </div>
 
         <div className="certification-input-box">
-          <div className="timer-box">
-            <p>인증번호</p>
-            <p className="timer">
-              {min} 분 {sec} 초
-            </p>
-          </div>
-          <div className="input-input-box">
-            <input
-              className="input-only"
-              value={code}
-              onChange={onChangeCode}
-            />
-            <button className="restart-btn" onClick={onClickRestart}>
-              재전송
-            </button>
-          </div>
+          <Timer min={min} sec={sec} />
+          <InputCertification
+            code={code}
+            onChangeCode={onChangeCode}
+            onClickRestart={onClickRestart}
+          />
         </div>
 
         <div>
